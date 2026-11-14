@@ -5,8 +5,11 @@ import com.ha7890846.repository_searcher.dto.GitHubRepositoryResponseDto;
 import com.ha7890846.repository_searcher.dto.GitHubSearchResultDto;
 import com.ha7890846.repository_searcher.service.GitHubService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -19,10 +22,15 @@ public class GitHubController {
         this.githubService = githubService;
     }
 
+
     @GetMapping("/")
-    public String home() {
-        return "redirect:/swagger-ui/index.html";
+    public ResponseEntity<Void> home() {
+        return ResponseEntity
+                .status(HttpStatus.FOUND)
+                .location(URI.create("/swagger-ui/index.html"))
+                .build();
     }
+
 
     @GetMapping("/repositories")
     public ResponseEntity<List<GitHubRepositoryResponseDto>> getRepositories(
