@@ -19,7 +19,10 @@ public class GitHubController {
         this.githubService = githubService;
     }
 
-
+    @GetMapping("/")
+    public ResponseEntity<String> home(){
+        return ResponseEntity.ok("Welcome to the Github Repo Search REST Api");
+    }
 
     @GetMapping("/repositories")
     public ResponseEntity<List<GitHubRepositoryResponseDto>> getRepositories(
