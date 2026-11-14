@@ -20,8 +20,8 @@ public class GitHubController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<String> home(){
-        return ResponseEntity.ok("Welcome to the Github Repo Search REST Api");
+    public String home() {
+        return "redirect:/swagger-ui/index.html";
     }
 
     @GetMapping("/repositories")
